@@ -76,7 +76,7 @@ class _OnBoardingState extends State<OnBoarding> {
           decoration: BoxDecoration(
               borderRadius:
                   const BorderRadius.vertical(top: Radius.circular(50)),
-              color: Color.fromARGB(255, 250, 248, 249)),
+              color: const Color.fromARGB(255, 250, 248, 249)),
           // ignore: unnecessary_new
           child: Column(
             children: [
@@ -94,7 +94,7 @@ class _OnBoardingState extends State<OnBoarding> {
                         style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
-                            color: Color.fromARGB(255, 67, 3, 80)),
+                            color: const Color.fromARGB(255, 67, 3, 80)),
                       ),
                       // ignore: prefer_const_constructors
                       SizedBox(
@@ -136,9 +136,9 @@ class _OnBoardingState extends State<OnBoarding> {
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             primary: currentIndex == contents.length - 1
-                                ? Color.fromARGB(255, 8, 231, 75)
-                                : Color.fromARGB(255, 253, 255, 254),
-                            onPrimary: Color.fromARGB(255, 67, 3, 80),
+                                ? const Color.fromARGB(255, 8, 231, 75)
+                                : const Color.fromARGB(255, 253, 255, 254),
+                            onPrimary: const Color.fromARGB(255, 67, 3, 80),
                             shadowColor: Colors.greenAccent,
                             elevation: 3,
                             shape: RoundedRectangleBorder(
@@ -168,11 +168,13 @@ class _OnBoardingState extends State<OnBoarding> {
   Container buildDot(int index, BuildContext context) {
     return Container(
       height: 5,
-      width: currentIndex == index ? 25 : 10,
+      width: currentIndex == index ? 30 : 15,
       margin: const EdgeInsets.only(right: 5),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Color.fromARGB(255, 245, 9, 9)),
+          color: currentIndex == index
+              ? Color.fromARGB(255, 248, 6, 6)
+              : Color.fromARGB(255, 139, 138, 138)),
     );
   }
 }
