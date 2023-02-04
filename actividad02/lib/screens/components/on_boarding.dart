@@ -58,7 +58,7 @@ class _OnBoardingState extends State<OnBoarding> {
           },
           itemBuilder: (_, i) {
             return Padding(
-              padding: const EdgeInsets.only(top: 80, left: 60, right: 60),
+              padding: const EdgeInsets.only(top: 90, left: 60, right: 60),
               child: Column(
                 children: [
                   Image.asset(
@@ -135,7 +135,9 @@ class _OnBoardingState extends State<OnBoarding> {
                       children: [
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            primary: Color.fromARGB(255, 252, 251, 252),
+                            primary: currentIndex == contents.length - 1
+                                ? Color.fromARGB(255, 8, 231, 75)
+                                : Color.fromARGB(255, 253, 255, 254),
                             onPrimary: Color.fromARGB(255, 67, 3, 80),
                             shadowColor: Colors.greenAccent,
                             elevation: 3,
@@ -146,7 +148,10 @@ class _OnBoardingState extends State<OnBoarding> {
                             minimumSize: const Size(360, 50), //////// HERE
                           ),
                           onPressed: () {},
-                          child: Text('Siguiente'),
+                          // ignore: prefer_const_constructors
+                          child: Text('Siguiente',
+                              // ignore: prefer_const_constructors
+                              style: TextStyle(fontSize: 18)),
                         )
                       ],
                     ),
