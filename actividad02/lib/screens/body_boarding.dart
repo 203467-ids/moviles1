@@ -1,4 +1,5 @@
-import 'package:actividad02/screens/components/on_boarding.dart';
+import 'package:app1/screens/components/on_boarding.dart';
+
 import 'package:flutter/material.dart';
 
 class BodyBoarding extends StatefulWidget {
@@ -10,17 +11,13 @@ class BodyBoarding extends StatefulWidget {
 
 class _BodyBoardingState extends State<BodyBoarding>
     with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this);
   }
 
   @override
   void dispose() {
-    _controller.dispose();
     super.dispose();
   }
 

@@ -6,22 +6,31 @@ class View02 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('GeeksforGeeks'),
+      ),
       body: Center(
-          child: Column(children: [
-        Container(
-          padding: const EdgeInsets.only(
-              top: 50, bottom: 40), //apply padding to all four sides
-          child: const Text("Hello World, Text 1"),
-        ),
-        Column(
-          children: const [
-            Text("Hello World, Text 2"),
-            Text("Hello World, Text 3"),
-            Text("Hello World, Text 4"),
-            Text("Hello World, Text 5"),
-          ],
-        )
-      ])),
+          child: Column(
+        children: [
+          const Padding(
+            padding: EdgeInsets.only(
+              top: 40.0,
+            ),
+            child: Text("Texto textoso"),
+          ),
+          Container(
+            color: const Color.fromRGBO(196, 196, 196, 0.37),
+            child: Column(
+              children: const [
+                Text("1. Texto textoso "),
+                Text("2. Texto textoso "),
+                Text("3. Texto textoso "),
+                Text("4. Texto textoso ")
+              ],
+            ),
+          )
+        ],
+      )),
     );
   }
 }

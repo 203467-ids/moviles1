@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'ContentBoarding.dart';
+import 'on_boarding_slide.dart';
+import 'package:app1/pages/login.dart';
 
 class OnBoarding extends StatefulWidget {
   const OnBoarding({super.key});
@@ -9,151 +10,120 @@ class OnBoarding extends StatefulWidget {
 }
 
 class _OnBoardingState extends State<OnBoarding> {
-  int currentIndex = 0;
-  late PageController _controller;
+  int currentePage = 0;
+  late PageController pageController;
+  List<Map<String, String>> listBoarding = [
+    {
+      "titulo": "ESPARCIMIENTO",
+      "imagen": "assets/images/B1.png",
+      "descripcion": "Brindamos todos los servicios para consentir a tu mascota"
+    },
+    {
+      "titulo": "ADOPCION",
+      "imagen": "assets/images/B2.png",
+      "descripcion":
+          "Nulla faucibus tellus ut odio scelerisque vitae molestie lectus feugiat."
+    },
+    {
+      "titulo": "HOSPITALIDAD",
+      "imagen": "assets/images/B3.png",
+      "descripcion":
+          "Nulla faucibus tellus ut odio scelerisque vitae molestie lectus feugiat."
+    },
+    {
+      "titulo": "VETERINARIA",
+      "imagen": "assets/images/B4.png",
+      "descripcion":
+          "Nulla faucibus tellus ut odio scelerisque vitae molestie lectus feugiat."
+    },
+    {
+      "titulo": "TIENDA",
+      "imagen": "assets/images/B5.png",
+      "descripcion":
+          "Compra todas las necesidades de tu mascota sin salir de casa"
+    },
+  ];
+
   @override
   void initState() {
-    _controller = PageController(initialPage: 0);
-    // TODO: implement initState
     super.initState();
-  }
-
-  void gotoPage() {
-    print("Thankyou");
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    // TODO: implement dispose
-    super.dispose();
+    pageController = PageController(initialPage: 0);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Column(
-      children: [
-        const Align(
-          alignment: Alignment.center,
-          child: SafeArea(
-            left: true,
-            top: true,
-            right: true,
-            bottom: true,
-            minimum: EdgeInsets.all(16.0),
-            child: Padding(
-              padding: EdgeInsets.all(10.0),
+    return SafeArea(
+      child: Column(children: [
+        Expanded(
+          flex: 20,
+          child: PageView.builder(
+            onPageChanged: (value) => {
+              setState(() {
+                currentePage = value;
+              })
+            },
+            itemBuilder: (context, index) => OnBoardingSlide(
+              imagen: listBoarding[index]["imagen"],
+              titulo: listBoarding[index]["titulo"],
+              descripcion: listBoarding[index]["descripcion"],
             ),
+            itemCount: listBoarding.length,
+            controller: pageController,
           ),
         ),
         Expanded(
-            child: PageView.builder(
-          controller: _controller,
-          itemCount: contents.length,
-          onPageChanged: (int index) {
-            setState(() {
-              currentIndex = index;
-            });
-          },
-          itemBuilder: (_, i) {
-            return Padding(
-              padding: const EdgeInsets.only(top: 90, left: 60, right: 60),
-              child: Column(
-                children: [
-                  Image.asset(
-                    contents[i].image,
-                    height: 300,
-                  )
-                ],
-              ),
-            );
-          },
-        )),
-        Container(
-          height: 410.0,
-          // ignore: prefer_const_constructors
-          decoration: BoxDecoration(
-              borderRadius:
-                  const BorderRadius.vertical(top: Radius.circular(50)),
-              color: const Color.fromARGB(255, 250, 248, 249)),
-          // ignore: unnecessary_new
+          flex: 6,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Expanded(
-                flex: 5,
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      top: 20, left: 20, right: 20, bottom: 20),
-                  child: Column(
-                    children: [
-                      Text(
-                        contents[currentIndex].tittle,
-                        textAlign: TextAlign.center,
-                        // ignore: prefer_const_constructors
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: const Color.fromARGB(255, 67, 3, 80)),
-                      ),
-                      // ignore: prefer_const_constructors
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        contents[currentIndex].text,
-                        textAlign: TextAlign.center,
-                        // ignore: prefer_const_constructors
-                        style: TextStyle(
-                            fontSize: 20,
-                            color: const Color.fromARGB(255, 75, 67, 67)),
-                      ),
-                      const SizedBox(
-                        height: 50,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: List.generate(
-                          contents.length,
-                          (index) => buildDot(index, context),
-                        ),
-                      ),
-                    ],
-                  ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: List.generate(
+                  listBoarding.length,
+                  (index) => Pages(index: index, currentePage: currentePage),
                 ),
               ),
-              Expanded(
-                flex: 3,
-                child: Container(
-                  alignment: Alignment.center,
-                  child: SafeArea(
-                    left: true,
-                    top: true,
-                    right: true,
-                    bottom: true,
-                    child: Column(
-                      children: [
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: currentIndex == contents.length - 1
-                                ? const Color.fromARGB(255, 8, 231, 75)
-                                : const Color.fromARGB(255, 253, 255, 254),
-                            onPrimary: const Color.fromARGB(255, 67, 3, 80),
-                            shadowColor: Colors.greenAccent,
-                            elevation: 3,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(32.0)),
-                            side: const BorderSide(
-                                color: Color.fromARGB(255, 67, 3, 80)),
-                            minimumSize: const Size(360, 50), //////// HERE
-                          ),
-                          onPressed: () {},
-                          // ignore: prefer_const_constructors
-                          child: Text('Siguiente',
-                              // ignore: prefer_const_constructors
-                              style: TextStyle(fontSize: 18)),
-                        )
-                      ],
+              Padding(
+                padding: const EdgeInsets.only(top: 100),
+                child: SizedBox(
+                  width: 350,
+                  height: 60,
+                  child: OutlinedButton(
+                    onPressed: () {
+                      currentePage == listBoarding.length - 1
+                          ? Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const Login(),
+                              ),
+                            )
+                          : pageController.nextPage(
+                              curve: Curves.easeInSine,
+                              duration: const Duration(milliseconds: 500));
+                    },
+                    style: OutlinedButton.styleFrom(
+                        backgroundColor: currentePage == listBoarding.length - 1
+                            ? const Color.fromARGB(255, 136, 201, 45)
+                            : const Color.fromARGB(255, 255, 255, 255),
+                        side: BorderSide(
+                            width: 2.0,
+                            color: currentePage == listBoarding.length - 1
+                                ? const Color.fromARGB(255, 136, 201, 45)
+                                : const Color.fromARGB(193, 105, 81, 81)),
+                        textStyle: const TextStyle(
+                          fontSize: 24.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(28.0),
+                        )),
+                    child: Text(
+                      "Siguiente",
+                      style: TextStyle(
+                        color: currentePage == listBoarding.length - 1
+                            ? const Color.fromARGB(255, 255, 255, 255)
+                            : const Color.fromARGB(193, 105, 81, 81),
+                      ),
                     ),
                   ),
                 ),
@@ -161,20 +131,24 @@ class _OnBoardingState extends State<OnBoarding> {
             ],
           ),
         ),
-      ],
-    ));
-  }
-
-  Container buildDot(int index, BuildContext context) {
-    return Container(
-      height: 5,
-      width: currentIndex == index ? 30 : 15,
-      margin: const EdgeInsets.only(right: 5),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: currentIndex == index
-              ? Color.fromARGB(255, 248, 6, 6)
-              : Color.fromARGB(255, 139, 138, 138)),
+      ]),
     );
   }
+}
+
+// ignore: non_constant_identifier_names
+AnimatedContainer Pages({required int index, required int currentePage}) {
+  return AnimatedContainer(
+    // color: currentePage == index ? Colors.amber : Colors.blue,
+    margin: const EdgeInsets.only(right: 10),
+    duration: kThemeAnimationDuration,
+    width: currentePage == index ? 30 : 20,
+
+    height: 5,
+    decoration: BoxDecoration(
+        color: currentePage == index
+            ? const Color.fromARGB(255, 255, 35, 35)
+            : const Color.fromARGB(255, 201, 182, 182),
+        borderRadius: BorderRadius.circular(20)),
+  );
 }

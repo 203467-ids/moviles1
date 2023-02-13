@@ -1,6 +1,6 @@
 {
-    "name": "actividad02",
-    "short_name": "actividad02",
+    "name": "app1",
+    "short_name": "app1",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

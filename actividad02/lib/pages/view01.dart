@@ -9,13 +9,9 @@ class View01 extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            Image.asset(
-              'assets/images/img.jpg',
-              height: 100,
-              scale: 2.5,
-            ),
+            Image.asset('assets/images/img.png'),
             Padding(
-              padding: const EdgeInsets.only(top: 100.0, bottom: 50),
+              padding: const EdgeInsets.only(top: 10.0, bottom: 50),
               child: Column(
                 children: const [
                   Text(
@@ -46,15 +42,11 @@ class View01 extends StatelessWidget {
                     style: TextStyle(fontSize: 30.5, color: Colors.blue),
                   ),
                   Text(
-                    "Enrique Farrera",
+                    "Verdi",
                     style: TextStyle(fontSize: 30.5, color: Colors.blue),
                   ),
                   Text(
-                    "Farrera",
-                    style: TextStyle(fontSize: 30.5, color: Colors.blue),
-                  ),
-                  Text(
-                    "Sanchez",
+                    "Cruz",
                     style: TextStyle(fontSize: 30.5, color: Colors.blue),
                   ),
                 ],

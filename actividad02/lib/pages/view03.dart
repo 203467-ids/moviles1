@@ -1,48 +1,45 @@
 import 'package:flutter/material.dart';
 
-class Login extends StatelessWidget {
-  const Login({super.key});
+class View03 extends StatelessWidget {
+  const View03({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Material App Bar'),
+      ),
       body: Center(
-        child: Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20),
-          child: LayoutBuilder(
-            builder:
-                (BuildContext context, BoxConstraints viewportConstraints) {
-              return SingleChildScrollView(
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minHeight: viewportConstraints.maxHeight,
+        child: Column(
+          children: [
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const <Widget>[
+                  Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Text("data"),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 600),
-                    child: Column(
-                      children: const [
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 20),
-                          child: TextField(
-                            decoration: InputDecoration(
-                              hintText: ('email'),
-                            ),
-                          ),
-                        ),
-                        TextField(
-                          decoration: InputDecoration(
-                            hintText: ('password'),
-                          ),
-                        )
-                      ],
-                    ),
+                  Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Text("data"),
                   ),
-                ),
-              );
-            },
-          ),
+                ]),
+            Image.asset("assets/images/img.png"),
+            wFinal()
+          ],
         ),
       ),
+    );
+  }
+
+  Column wFinal() {
+    return Column(
+      children: const [
+        Text("1. Texto textoso "),
+        Text("2. Texto textoso "),
+        Text("3. Texto textoso "),
+        Text("4. Texto textoso ")
+      ],
     );
   }
 }
